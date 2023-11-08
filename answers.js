@@ -1,4 +1,5 @@
-//На HTML-сторінці є ненумерований список з id="list", який складається із 5 елементів. 
+//1. На HTML-сторінці є ненумерований список з id="list", який складається із 5 елементів. 
+// ВИПРАВЛЕНЕ ЗАВДАННЯ
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,11 +19,11 @@
 
 <script>
 function displayList() {
-    var list = document.getElementById("list");
+    let list = document.getElementById("list"); //виправила var на let
 
-    var items = list.getElementsByTagName("li");
+    let items = list.getElementsByTagName("li"); //виправила var на let
 
-    var result = items[0].textContent + ", " +
+    let result = items[0].textContent + ", " + 
                   items[4].textContent + ", " +
                   items[1].textContent + ", " +
                   items[3].textContent + ", " +
@@ -35,73 +36,37 @@ function displayList() {
 </body>
 </html>
 
-// Напишіть скріпт, який за допомогою засобів DOM простилізує сторінку так як показано на картинці.
+//2.  Напишіть скріпт, який за допомогою засобів DOM простилізує сторінку так як показано на картинці.
 // https://media.discordapp.net/attachments/1080492799943790642/1088041210431684648/image.png
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Manipulating Page Elements</title>
-    <style>
-        #myDiv {
-            background-color: white;
-            text-align: center;
-        }
-        #myDiv p {
-            font-weight: bold;
-            margin: 0;
-        }
-        #myDiv p:nth-child(2) {
-            color: red;
-        }
-        #myDiv p:nth-child(3) {
-            text-decoration: underline;
-        }
-        #myDiv p:nth-child(4) {
-            font-style: italic;
-        }
-        #myList {
-            list-style-type: none;
-        }
-        #myList li {
-            display: inline;
-        }
-        span {
-            display: none;
-        }
-    </style>
-</head>
-<body>
-    <h1 style="background-color: green; color: black; text-align: center;">I'm a big header!!!</h1>
-    <div id="myDiv">
-        <p>First paragraph</p>
-        <p>Second paragraph</p>
-        <p>Third paragraph</p>
-        <p>Fourth paragraph</p>
-    </div>
-    <ul id="myList">
-        <li>Make</li>
-        <li>me</li>
-        <li>horizontal!</li>
-    </ul>
-    <span>Make me invisible, please!</span>
+// ВИПРАВЛЕНЕ ЗАВДАННЯ (Ваш коментар - "все потрібно було реалізувати через js а не в css файлі")
+let myDiv = document.getElementById('myDiv');
+let myList = document.getElementById('myList');
+let span = document.querySelector('span');
 
-    <script>
-        var span = document.querySelector('span');
-        span.style.display = 'inline';
+myDiv.style.textAlign = 'center';
 
-        var listItems = document.querySelectorAll('#myList li');
-        var combinedWord = '';
-        listItems.forEach(function (item) {
-            combinedWord += item.textContent;
-        });
-        listItems[0].textContent = combinedWord;
-        for (var i = 1; i < listItems.length; i++) {
-            listItems[i].style.display = 'none';
-        }
-    </script>
-</body>
-</html>
-//Напишіть скріпт, який за допомогою засобів DOM створить для порожньої HTML-сторінки таку структуру з тегів і їх атрибутів.
+let paragraphs = myDiv.getElementsByTagName('p');
+paragraphs[0].style.fontWeight = 'bold';
+paragraphs[1].style.color = 'red';
+paragraphs[2].style.textDecoration = 'underline';
+paragraphs[3].style.fontStyle = 'italic';
+
+myList.style.listStyleType = 'none';
+
+let listItems = myList.getElementsByTagName('li');
+for (let i = 1; i < listItems.length; i++) {
+    listItems[i].style.display = 'none';
+}
+let combinedWord = '';
+for (let i = 0; i < listItems.length; i++) {
+    combinedWord += listItems[i].textContent;
+}
+listItems[0].textContent = combinedWord;
+span.style.display = 'none';
+
+
+//3. Напишіть скріпт, який за допомогою засобів DOM створить для порожньої HTML-сторінки таку структуру з тегів і їх атрибутів.
+//Виправила var на let
 <!DOCTYPE html>
 <html>
 <head>
@@ -109,13 +74,13 @@ function displayList() {
 </head>
 <body>
     <script>
-        var mainElement = document.createElement("main");
+        let mainElement = document.createElement("main");
         mainElement.className = "mainClass check item";
 
-        var divElement = document.createElement("div");
+        let divElement = document.createElement("div");
         divElement.id = "myDiv";
 
-        var paragraphElement = document.createElement("p");
+        let paragraphElement = document.createElement("p");
         paragraphElement.textContent = "First paragraph";
 
         divElement.appendChild(paragraphElement);
@@ -125,30 +90,32 @@ function displayList() {
 </body>
 </html>
 
+//Завдання 4. Виправила var на let
 //https://codepen.io/misha_klymenko/pen/Jjabvez
 function displayData() {
-    var inputElements = document.querySelectorAll('.arr');
-    var outBlock = document.querySelector('.out');
-    var outputText = "Дані з полів:\n";
+    let inputElements = document.querySelectorAll('.arr');
+    let outBlock = document.querySelector('.out');
+    let outputText = "Дані з полів:\n";
 
     inputElements.forEach(function (input) {
-        var label = input.getAttribute('data-form');
-        var value = input.value;
+        let label = input.getAttribute('data-form');
+        let value = input.value;
         outputText += label + ": " + value + "\n";
     });
 
     outBlock.textContent = outputText;
 }
 
+//Завдання 5. Виправила var на let.
 //https://codepen.io/misha_klymenko/pen/abzLvqo
-var circles = document.querySelectorAll(".circle");
+let circles = document.querySelectorAll(".circle");
 
 circles.forEach(function(circle) {
-  var dataAnim = circle.getAttribute("data-anim");
+  let dataAnim = circle.getAttribute("data-anim");
 
   circle.classList.add(dataAnim);
   
-  var isAnimationApplied = circle.classList.contains(dataAnim);
+  let isAnimationApplied = circle.classList.contains(dataAnim);
   if (isAnimationApplied) {
     console.log(`Анімація "${dataAnim}" була застосована до елемента.`);
   } else {
@@ -156,18 +123,63 @@ circles.forEach(function(circle) {
   }
 });
 
+//ВИПРАВЛЕНЕ ЗАВДАННЯ 6.
 //https://codepen.io/misha_klymenko/pen/dyjyeGO
-<script>
-        var colors = document.querySelectorAll(".color");
-        var outPrice = document.getElementById("outprice");
-        colors.forEach(function(color) {
-            color.addEventListener("click", function() {
-                var price = color.getAttribute("data-price");
-                outPrice.textContent = price;
-                colors.forEach(function(col) {
-                    col.classList.remove("active");
-                });
+ <div class="variations">
+    <button id="variation1" data-price="50">Variation 1</button>
+    <button id="variation2" data-price="30">Variation 2</button>
+</div> //добавила дві кнопки в html
+
+//JS
+    document.addEventListener("DOMContentLoaded", function () {
+        const colors = document.querySelectorAll(".color");
+        const outPrice = document.getElementById("outprice");
+        const additionalVariation1 = 50; // Додаткова варіація 1
+        const additionalVariation2 = 30; // Додаткова варіація 2
+
+        let basePrice = parseFloat(outPrice.innerText);
+
+        // оновлення ціни товару
+        function updatePrice() {
+            let selectedColor = null;
+
+            colors.forEach((color) => {
+                if (color.classList.contains("active")) {
+                    selectedColor = color;
+                }
+            });
+
+            if (selectedColor) {
+                const colorPrice = parseFloat(selectedColor.getAttribute("data-price"));
+                const totalPrice = basePrice + colorPrice + additionalVariation1 + additionalVariation2;
+                outPrice.innerText = totalPrice.toFixed(2);
+            }
+        }
+
+        // Обробник подій для кольорів
+        colors.forEach((color) => {
+            color.addEventListener("click", () => {
+                colors.forEach((c) => c.classList.remove("active"));
                 color.classList.add("active");
+                updatePrice();
             });
         });
-    </script>
+
+        // НОВІ ВАРІАЦІЇ
+        const variation1Button = document.getElementById("variation1");
+        const variation2Button = document.getElementById("variation2");
+
+        variation1Button.addEventListener("click", () => {
+            basePrice += additionalVariation1;
+            updatePrice();
+        });
+
+        variation2Button.addEventListener("click", () => {
+            basePrice += additionalVariation2;
+            updatePrice();
+        });
+
+        updatePrice();
+    });
+
+
